@@ -5,7 +5,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <header class="bg-primary">
+            <header className="bg-primary">
                 <nav>
                     <div className="container-fluid">
                         <div className="row justify-content-between align-items-baseline">
