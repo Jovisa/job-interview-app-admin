@@ -15,12 +15,9 @@ export default class Reports extends React.Component {
 
     getReports() {
         this.comunicationService.fetchReports(reportData => {
-            console.log(`reports:`, reportData);
             this.setState({
                 reports: reportData,
             });
-            console.log(this.state.reports);
-
         }, error => {
             console.log("error");
         })
