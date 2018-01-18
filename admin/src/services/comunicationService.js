@@ -13,5 +13,18 @@ export default class ComunicationService  {
           failedResponse(error);
         });
     }
+
+    fetchCandidates(successfulResponse, failedResponse) {
+        axios.get(`${API}candidates`)
+        .then(response => {
+         
+          successfulResponse(response.data);
+        })
+        .catch(error => {
+          failedResponse(error);
+        });
+    }
+
+    
     
 }
