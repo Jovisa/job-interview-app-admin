@@ -12,6 +12,7 @@ export default class Candidate extends React.Component {
         };
 
         this.comunicationService = new ComunicationService();
+        this.handleCandidate = this.handleCandidate.bind(this);
     }
 
     getCandidates() {
@@ -29,10 +30,15 @@ export default class Candidate extends React.Component {
         this.getCandidates();
     }
 
+    handleCandidate (candidateData) {
+        this.props.handleCandidateData(candidateData);
+    }
+
+
     render() {
         let candidatesList = this.state.candidates.map(candidate => {
             return(
-                <ChoseCandidate key={candidate.id} candidate={candidate}/>
+                <ChoseCandidate key={candidate.id} candidate={candidate} handleCandidate={this.handleCandidate}/>
             );
         })
         
@@ -46,7 +52,7 @@ export default class Candidate extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <Link to="create-report/company"> NEXT </Link>
+                        <Link to="create-report/company" onClick={this.handleCandidate}> NEXT </Link>
                     </div>
                 </div>
 
