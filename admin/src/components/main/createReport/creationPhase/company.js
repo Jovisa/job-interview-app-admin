@@ -10,10 +10,13 @@ export default class Company extends React.Component {
 
         this.state = {
             companies: [],
+            name: "",
+            id: "",
         };
 
         this.comunicationService = new ComunicationService();
         this.handleCompanyData = this.handleCompanyData.bind(this);
+        this.handleChosenCompany = this.handleChosenCompany.bind(this);
     }
 
     getCompanies() {
@@ -32,15 +35,26 @@ export default class Company extends React.Component {
         this.getCompanies();
     }
 
-    handleCompanyData (companyData) {
+    handleCompanyData () {
+        const companyData = {
+            id: this.state.id,
+            name: this.state.name,
+        }
         this.props.handleCompanyData(companyData);
+    }
+
+    handleChosenCompany(companyData) {
+        this.setState({
+            id: companyData.id,
+            name: companyData.name,
+        })
     }
 
 
     render() {
         let companiesList = this.state.companies.map(company => {
             return (
-                <ChoseCompany key={company.id} company={company} handleCompanyData={this.handleCompanyData} />
+                <ChoseCompany key={company.id} company={company} handleChosenCompany={this.handleChosenCompany} />
             );
         })
 

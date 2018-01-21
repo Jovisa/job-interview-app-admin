@@ -4,21 +4,16 @@ export default class ChoseCandidate extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            candidateId: null,
-            candidateName: "",
-        }
-
         this.handleclick = this.handleclick.bind(this);
     }
 
     handleclick() {
         let candidate = this.props.candidate;
         let candidateData = {
-            candidateId: candidate.id,
-            candidateName: candidate.name,
+            id: candidate.id,
+            name: candidate.name,
         };
-        this.props.handleCandidate(candidateData);
+        this.props.handleChosenCandidate(candidateData);
     }
 
     render() {

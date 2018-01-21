@@ -10,11 +10,10 @@ export default class ChoseCandidate extends React.Component {
     handleCompany () {
         let company = this.props.company;
         let companyData = {
-            companyId: company.id,
-            companyName: company.name,
+            id: company.id,
+            name: company.name,
         }
-
-        this.props.handleCompanyData(companyData);
+        this.props.handleChosenCompany(companyData);
     }
 
     render() {

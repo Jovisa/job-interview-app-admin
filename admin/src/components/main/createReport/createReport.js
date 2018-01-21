@@ -25,34 +25,33 @@ export default class CreateReport extends React.Component {
     }
 
     handleReportData(reportData) {
-        
+
         this.setState({
             interviewDate: reportData.interviewDate,
             phase: reportData.phase,
             status: reportData.status,
-            notes: reportData.notes,
+            note: reportData.notes,
         })
-        
-        
+
+
     }
 
     handleCandidateData(candidateData) {
 
-        this.setState({
-            candidateId: candidateData.candidateId,
-            candidateName: candidateData.candidateName,
-        })
+      this.setState({
+        candidateId: candidateData.id,
+        candidateName: candidateData.name,
+      })
 
     }
 
-    handleCompanyData (companyData) {
-        this.setState({
-            companyId: companyData.companyId,
-            companyName: companyData.companyName,
-        })
-        
+    handleCompanyData(companyData) {
+      this.setState({
+        companyId: companyData.id,
+        companyName: companyData.name,
+      })
     }
-    
+
     render() {
         return (
             <div className="container">
@@ -62,9 +61,9 @@ export default class CreateReport extends React.Component {
                     </div>
                     <div className="col col-12 col-md-9">
                         <Switch>
-                            <Route exact path="/create-report" component={(props) => <Candidate handleCandidateData={this.handleCandidateData}/>} />
-                            <Route path="/create-report/company" component={(props) => <Company handleCompanyData={this.handleCompanyData}/>} />
-                            <Route path="/create-report/report" component={(props) => <Report handleSubmit={this.handleReportData}/>} />
+                            <Route exact path="/create-report" component={(props) => <Candidate handleCandidateData={this.handleCandidateData} />} />
+                            <Route path="/create-report/company" component={(props) => <Company handleCompanyData={this.handleCompanyData} />} />
+                            <Route path="/create-report/report" component={(props) => <Report handleSubmit={this.handleReportData} />} />
                         </Switch>
                     </div>
                 </div>
