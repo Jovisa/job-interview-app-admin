@@ -12,14 +12,38 @@ export default class Report extends React.Component {
             notes: "",
         }
 
-        this.submitReport = this.submitReport.bind(this);
+        this.choseDate = this.choseDate.bind(this);
+        this.chosePhase = this.chosePhase.bind(this);
+        this.choseStatus = this.choseStatus.bind(this);
+        this.choseNote = this.choseNote.bind(this);
+        // this.submitReport = this.submitReport.bind(this);
     }
 
-    submitReport (e) {
-        e.preventDefault();
+    // submitReport(e) {
+    //     e.preventDefault();
 
-       let reportData = this.state;
-        this.props.handleSubmit(reportData);
+    //     const reportData = this.state;
+    //     this.props.handleSubmit(reportData);
+    // }
+    choseDate(e) {
+        const date = e.target.value;
+        this.props.handleDate(date);
+    }
+
+    chosePhase(e) {
+        const phase = e.target.value;
+        this.props.handlePhase(phase);
+    }
+
+    choseStatus(e) {
+        const status = e.target.value;
+        this.props.handleStatus(status);
+    }
+
+    choseNote(e) {
+        e.preventDefault();
+        let note = e.target.value;
+        this.props.handleNote(note);
     }
 
     render() {
@@ -29,11 +53,11 @@ export default class Report extends React.Component {
                 <div className="row">
 
                     <div className="col col-12 col-md-4 my-3">
-                        <input type="date" onChange= {(e) => this.setState({ interviewDate: e.target.value})} ref="date" name="date" id="" />
+                        <input type="date" onChange={(e) => this.choseDate(e)} ref="date" name="date" id="" />
                     </div>
 
                     <div className="col col-12 col-md-4 my-3">
-                        <select ref="phase" name="phase" id="" onChange= {(e) => this.setState({ phase: e.target.value})}>
+                        <select ref="phase" name="phase" id="" onChange={(e) => this.chosePhase(e)}>
                             <option value="tchnical">phase</option>
                             <option value="tchnical">techical</option>
                             <option value="cv">cv</option>
@@ -42,7 +66,7 @@ export default class Report extends React.Component {
                     </div>
 
                     <div className="col col-12 col-md-4 my-3">
-                        <select ref="status" name="status" id="" onChange= {(e) => this.setState({ status: e.target.value})}>
+                        <select ref="status" name="status" id="" onChange={(e) => this.choseStatus(e)}>
                             <option value="passed">status</option>
                             <option value="passed">passed</option>
                             <option value="declined">declined</option>
@@ -50,7 +74,7 @@ export default class Report extends React.Component {
                     </div>
 
                     <div className="col col-12 my-3">
-                        <textarea ref="note" name="note" id="" cols="30" rows="10" onChange= {(e) => this.setState({ notes: e.target.value})}></textarea>
+                        <textarea ref="note" name="note" id="" cols="30" rows="10" onMouseOut={(e) => this.choseNote(e)}></textarea>
                     </div>
 
                     <div className="col col-12 my-3">
