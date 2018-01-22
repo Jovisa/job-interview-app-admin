@@ -93,7 +93,7 @@ export default class CreateReport extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col col-12 col-md-3">
-                        <Sidebar />
+                        <Sidebar candidateName={this.state.candidateName} companyName={this.state.companyName}/>
                     </div>
                     <div className="col col-12 col-md-9">
                         <Switch>
