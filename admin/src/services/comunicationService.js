@@ -1,43 +1,51 @@
 import axios from "axios";
-import {API} from "../constants";
- 
-export default class ComunicationService  {
+import { API } from "../constants";
 
-    fetchReports(successfulResponse, failedResponse) {
-        axios.get(`${API}reports`)
-        .then(response => {
-         
-          successfulResponse(response.data);
-        })
-        .catch(error => {
-          failedResponse(error);
-        });
-    }
+export default class ComunicationService {
 
-    fetchCandidates(successfulResponse, failedResponse) {
-        axios.get(`${API}candidates`)
-        .then(response => {
-         
-          successfulResponse(response.data);
-        })
-        .catch(error => {
-          failedResponse(error);
-        });
-    }
+  fetchReports(successfulResponse, failedResponse) {
+    axios.get(`${API}reports`)
+      .then(response => {
 
-    fetchCompanies(successfulResponse, failedResponse) {
-        axios.get(`${API}companies`)
-        .then(response => {
-         
-          successfulResponse(response.data);
-        })
-        .catch(error => {
-          failedResponse(error);
-        });
-    }
+        successfulResponse(response.data);
+      })
+      .catch(error => {
+        failedResponse(error);
+      });
+  }
 
-    
+  fetchCandidates(successfulResponse, failedResponse) {
+    axios.get(`${API}candidates`)
+      .then(response => {
 
-    
-    
+        successfulResponse(response.data);
+      })
+      .catch(error => {
+        failedResponse(error);
+      });
+  }
+
+  fetchCompanies(successfulResponse, failedResponse) {
+    axios.get(`${API}companies`)
+      .then(response => {
+
+        successfulResponse(response.data);
+      })
+      .catch(error => {
+        failedResponse(error);
+      });
+  }
+
+  postReport(report, successfulResponse, failedResponse) {
+    axios.post(`${API}reports`, report)
+    .then(response => {
+      successfulResponse(response.data);
+    })
+    .catch(error => {
+      failedResponse(error);
+    });
+  }
+
+
+
 }

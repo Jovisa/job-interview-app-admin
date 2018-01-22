@@ -4,6 +4,7 @@ import Sidebar from "./sidebar";
 import Candidate from "./creationPhase/candidate";
 import Company from "./creationPhase/company";
 import Report from "./creationPhase/report";
+import ComunicationService from "../../../services/comunicationService";
 
 export default class CreateReport extends React.Component {
     constructor(props) {
@@ -19,44 +20,38 @@ export default class CreateReport extends React.Component {
             note: ""
         };
 
-        // this.handleReportData = this.handleReportData.bind(this);
+        this.comunicationService = new ComunicationService();
+        this.handleReportData = this.handleReportData.bind(this);
         this.handleCandidateData = this.handleCandidateData.bind(this);
         this.handleCompanyData = this.handleCompanyData.bind(this);
-        this.handleDate = this.handleDate.bind(this);
-        this.handlePhase = this.handlePhase.bind(this);
-        this.handleStatus = this.handleStatus.bind(this);
-        this.handleNote = this.handleNote.bind(this);
+        this.postReport = this.postReport.bind(this);
+        this.submittReport = this.submittReport.bind(this);
+       
     }
 
-    // handleReportData(reportData) {
-    //     this.setState({
-    //         interviewDate: reportData.interviewDate,
-    //         phase: reportData.phase,
-    //         status: reportData.status,
-    //         note: reportData.notes,
-    //     })
-    // }
-    handleStatus(status) {
-        this.setState({
-            status: status,
+    submittReport(reportData) {
+        this.handleReportData(reportData);
+        this.postReport(reportData);
+
+    }
+
+    postReport(reportData) {
+        let report = {...this.state, ...reportData};
+        console.log("report: ", report)
+        this.comunicationService.postReport(report, 
+        response => {
+            console.log("response:", response);
+        }, error => {
+            console.log("error:", error);
         })
     }
 
-    handleDate(date) {
+    handleReportData(reportData) {
         this.setState({
-            interviewDate: date,
-        })
-    }
-
-    handlePhase(phase) {
-        this.setState({
-            phase: phase,
-        })
-    }
-
-    handleNote(note) {
-        this.setState({
-            note: note,
+            interviewDate: reportData.interviewDate,
+            phase: reportData.phase,
+            status: reportData.status,
+            note: reportData.note,
         })
     }
 
@@ -87,7 +82,7 @@ export default class CreateReport extends React.Component {
                         <Switch>
                             <Route exact path="/create-report" component={(props) => <Candidate handleCandidateData={this.handleCandidateData} />} />
                             <Route path="/create-report/company" component={(props) => <Company handleCompanyData={this.handleCompanyData} />} />
-                            <Route path="/create-report/report" component={(props) => <Report handleDate={this.handleDate} handlePhase={this.handlePhase} handleStatus={this.handleStatus} handleNote={this.handleNote}/>} />
+                            <Route path="/create-report/report" component={(props) => <Report handleReportData={this.submittReport} />} />
                         </Switch>
                     </div>
                 </div>
