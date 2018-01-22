@@ -5,6 +5,7 @@ import Candidate from "./creationPhase/candidate";
 import Company from "./creationPhase/company";
 import Report from "./creationPhase/report";
 import ComunicationService from "../../../services/comunicationService";
+import RedirectionService from "../../../services/redirectionService";
 
 export default class CreateReport extends React.Component {
     constructor(props) {
@@ -21,10 +22,12 @@ export default class CreateReport extends React.Component {
         };
 
         this.comunicationService = new ComunicationService();
+        this.redirectionService = new RedirectionService();
         this.handleReportData = this.handleReportData.bind(this);
         this.handleCandidateData = this.handleCandidateData.bind(this);
         this.handleCompanyData = this.handleCompanyData.bind(this);
         this.postReport = this.postReport.bind(this);
+        this.resetState = this.resetState.bind(this);
         this.submittReport = this.submittReport.bind(this);
        
     }
@@ -32,12 +35,26 @@ export default class CreateReport extends React.Component {
     submittReport(reportData) {
         this.handleReportData(reportData);
         this.postReport(reportData);
+        this.redirectionService.redirect("/");
+        this.resetState();
 
+    }
+
+    resetState() {
+        this.setState({
+            candidateId: null,
+            candidateName: "",
+            companyId: null,
+            companyName: "",
+            interviewDate: "",
+            phase: "",
+            status: "",
+            note: ""
+        })
     }
 
     postReport(reportData) {
         let report = {...this.state, ...reportData};
-        console.log("report: ", report)
         this.comunicationService.postReport(report, 
         response => {
             console.log("response:", response);
