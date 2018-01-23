@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from "react-modal";
 import ComunicationService from "../../../services/comunicationService";
 import ReportsList from "./singleReport";
+import Search from "../../../common/search";
 
 const modalStyle = {
     content: {
@@ -34,6 +35,7 @@ export default class Reports extends React.Component {
             phase: "",
             status: "",
             note: "",
+            searchString: "",
 
         };
 
@@ -43,8 +45,14 @@ export default class Reports extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.setModalData = this.setModalData.bind(this);
         this.showSingleReportDetail = this.showSingleReportDetail.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
+    handleSearch(searchString) {
+        this.setState({
+            searchString: searchString,
+        })
+    }
 
 
     getReports() {
@@ -91,6 +99,11 @@ export default class Reports extends React.Component {
     render() {
         return (
             <div className="container">
+                <div className="row justify-content-start">
+                    <div className="col col-12 col-md-4 col-lg-3">
+                        <Search handleSearch={this.handleSearch}/>
+                    </div>
+                </div>
                 <ReportsList reports={this.state.reports} showSingleReportDetail={this.showSingleReportDetail} />
                 {this.displayModal()}
             </div>
