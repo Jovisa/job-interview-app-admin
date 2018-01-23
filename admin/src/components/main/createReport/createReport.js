@@ -35,7 +35,7 @@ export default class CreateReport extends React.Component {
     submittReport(reportData) {
         this.handleReportData(reportData);
         this.postReport(reportData);
-        this.redirectionService.redirect("/");
+        this.redirectionService.redirect("");
         this.resetState();
 
     }
