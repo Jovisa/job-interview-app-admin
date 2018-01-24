@@ -57,7 +57,7 @@ export default class CreateReport extends React.Component {
         let report = {...this.state, ...reportData};
         this.comunicationService.postReport(report, 
         response => {
-            console.log("response:", response);
+            
         }, error => {
             console.log("error:", error);
         })
