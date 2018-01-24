@@ -119,7 +119,7 @@ export default class Reports extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row justify-content-start">
+                <div className="row my-3 justify-content-start">
                     <div className="col col-12 col-md-4 col-lg-3">
                         <Search handleSearch={this.handleSearch}/>
                     </div>

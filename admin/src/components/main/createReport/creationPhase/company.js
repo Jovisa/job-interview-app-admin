@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ComunicationService from "../../../../services/comunicationService";
 import ChoseCompany from "./choseCompany";
+import Search from "../../../../common/search";
 
 export default class Company extends React.Component {
     constructor(props) {
@@ -10,13 +11,48 @@ export default class Company extends React.Component {
 
         this.state = {
             companies: [],
+            filteredCompanies: [],
             name: "",
             id: "",
+            searchString: "",
         };
 
         this.comunicationService = new ComunicationService();
         this.handleCompanyData = this.handleCompanyData.bind(this);
         this.handleChosenCompany = this.handleChosenCompany.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.setSearchData = this.setSearchData.bind(this);
+        this.filterCompanies = this.filterCompanies.bind(this);
+        this.nothingFound = this.nothingFound.bind(this);
+    }
+
+    nothingFound() {
+        return (
+            <div className="col col-12">
+                Nothing Found
+            </div>
+        );
+    }
+
+    filterCompanies(searchString) {
+        let companies = this.state.companies;
+        let string = searchString.toLowerCase();
+        let filteredCompanies = []
+        filteredCompanies = companies.filter(company =>
+            company.name.toLowerCase().includes(string)
+        );
+        this.setState({ filteredCompanies: filteredCompanies });
+    }
+
+    setSearchData(searchString) {
+        this.setState({
+            searchString: searchString
+        });
+    }
+
+    handleSearch(searchString) {
+        this.setSearchData(searchString);
+        this.filterCompanies(searchString);
     }
 
     getCompanies() {
@@ -24,7 +60,7 @@ export default class Company extends React.Component {
             this.setState({
                 companies: companiesData,
             });
-            
+
         }, error => {
             console.log("error");
         })
@@ -35,7 +71,7 @@ export default class Company extends React.Component {
         this.getCompanies();
     }
 
-    handleCompanyData () {
+    handleCompanyData() {
         const companyData = {
             id: this.state.id,
             name: this.state.name,
@@ -52,16 +88,25 @@ export default class Company extends React.Component {
 
 
     render() {
-        let companiesList = this.state.companies.map(company => {
-            return (
-                <ChoseCompany key={company.id} company={company} handleChosenCompany={this.handleChosenCompany} />
-            );
-        })
+        let companies = this.state.searchString.length !== 0 ? this.state.filteredCompanies : this.state.companies;
+        let companiesList;
+
+        if (companies.length) {
+            companiesList = companies.map(company => {
+                return (
+                    <ChoseCompany key={company.id} company={company} handleChosenCompany={this.handleChosenCompany} />
+                );
+            });
+        } else {
+            companiesList = this.nothingFound()
+        }
 
         return (
             <div className="container">
-                <div className="row">
-                    <h1>Company</h1>
+                <div className="row my-3 justify-content-end">
+                    <div className="col col-12 col-md-4 col-lg-3">
+                        <Search handleSearch={this.handleSearch} />
+                    </div>
                 </div>
                 <div className="row">
                     {companiesList}

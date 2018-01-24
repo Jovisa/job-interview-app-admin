@@ -98,13 +98,16 @@ export default class Candidate extends React.Component {
         } else {
             candidatesList = this.nothingFound();
         }
-            
-        
+
+
 
         return (
             <div className="container">
-                <div className="row my-3">
-                    <Search handleSearch={this.handleSearch} />
+                <div className="row my-3 justify-content-end">
+                    <div className="col col-12 col-md-4 col-lg-3">
+                        <Search handleSearch={this.handleSearch} />
+                    </div>
+
                 </div>
                 <div className="row">
                     {candidatesList}
