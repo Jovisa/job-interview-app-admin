@@ -21,7 +21,7 @@ export default class ChoseCandidate extends React.Component {
         let defaultAvatar = "http://via.placeholder.com/100x100";
 
         return (
-            <div className="col col-12 col-md-6" onClick={this.handleclick} >
+            <div className={`col col-12 col-md-6 single-candidate ${this.props.checkedId === candidate.id ? 'is-checked' : ''}`} onClick={this.handleclick} >
                 <div className="row my-3">
                     <div className="col-2">
                         <img className="chose-candidate-img" src={candidate.avatar ? candidate.avatar : defaultAvatar} alt="Candidate Avatar" />

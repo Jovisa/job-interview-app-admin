@@ -1,5 +1,18 @@
+@import "theme.css";
+
 .chose-candidate-img {
     max-width: 50px;
 }
 
+.single-candidate:hover {
+    cursor: pointer;
+}
+
+.single-company:hover {
+    cursor: pointer;
+}
+
+.is-checked {
+    border: 2px solid red;
+}
 

@@ -14,6 +14,7 @@ export default class Candidate extends React.Component {
             name: "",
             id: "",
             searchString: "",
+            isChecked: false,
         };
 
         this.comunicationService = new ComunicationService();
@@ -81,6 +82,7 @@ export default class Candidate extends React.Component {
         this.setState({
             id: candidateData.id,
             name: candidateData.name,
+            isChecked: true,
         });
     }
 
@@ -92,7 +94,7 @@ export default class Candidate extends React.Component {
         if (candidates.length) {
             candidatesList = candidates.map(candidate => {
                 return (
-                    <ChoseCandidate key={candidate.id} candidate={candidate} handleChosenCandidate={this.handleChosenCandidate} />
+                    <ChoseCandidate key={candidate.id} candidate={candidate} checkedId={this.state.id} handleChosenCandidate={this.handleChosenCandidate} />
                 );
             })
         } else {
@@ -114,7 +116,7 @@ export default class Candidate extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <Link to="create-report/company" onClick={this.handleCandidate}> NEXT </Link>
+                        <Link to="create-report/company" onClick={this.handleCandidate} className={`btn btn-success ${this.state.isChecked ? "" : "disabled"}`}> NEXT </Link>
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ export default class ChoseCandidate extends React.Component {
         let company = this.props.company;
 
         return (
-            <div className="col col-12 my-1" onClick={this.handleCompany}>
+            <div className={`col col-12 my-1 single-company ${this.props.checkedId === company.id ? "is-checked" : ""}`} onClick={this.handleCompany}>
                {company.name}
             </div>
         );

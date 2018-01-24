@@ -141,6 +141,7 @@ export default class Reports extends React.Component {
                 onRequestClose={this.closeModal}
                 contentLabel="Example Modal"
                 style={modalStyle}
+                ariaHideApp={false}
             >
 
                 <div className="container-fluid">

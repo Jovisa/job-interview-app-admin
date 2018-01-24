@@ -30,7 +30,8 @@ export default class ReportsList extends React.Component {
                                     <div className="col col-5">{formatedDate}</div>
                                     <div className="col col-3">{report.status}</div>
                                     <div className="col col-4">
-                                        <button data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
+                                        <button className="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
+                                        <button className="btn btn-sm btn-danger">&times;</button>
                                     </div>
                                 </div>
                             </div>

@@ -15,6 +15,7 @@ export default class Company extends React.Component {
             name: "",
             id: "",
             searchString: "",
+            isChecked: false,
         };
 
         this.comunicationService = new ComunicationService();
@@ -75,6 +76,7 @@ export default class Company extends React.Component {
         const companyData = {
             id: this.state.id,
             name: this.state.name,
+           
         }
         this.props.handleCompanyData(companyData);
     }
@@ -83,6 +85,7 @@ export default class Company extends React.Component {
         this.setState({
             id: companyData.id,
             name: companyData.name,
+            isChecked: true,
         })
     }
 
@@ -94,7 +97,7 @@ export default class Company extends React.Component {
         if (companies.length) {
             companiesList = companies.map(company => {
                 return (
-                    <ChoseCompany key={company.id} company={company} handleChosenCompany={this.handleChosenCompany} />
+                    <ChoseCompany key={company.id} company={company} checkedId={this.state.id} handleChosenCompany={this.handleChosenCompany} />
                 );
             });
         } else {
@@ -116,7 +119,7 @@ export default class Company extends React.Component {
                         <Link to="/create-report"> BACK </Link>
                     </div>
                     <div className="col">
-                        <Link to="/create-report/report" onClick={this.handleCompanyData}> NEXT </Link>
+                        <Link to="/create-report/report" onClick={this.handleCompanyData} className={`btn btn-success ${this.state.isChecked ? "" : "disabled"}`}> NEXT </Link>
                     </div>
                 </div>
 
