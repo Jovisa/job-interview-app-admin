@@ -9,6 +9,7 @@ export default class Search extends React.Component {
 
     handleUserInput(e) {
         let searchString = e.target.value;
+        console.log(searchString);
         this.props.handleSearch(searchString);
     }
        

@@ -28,6 +28,7 @@ export default class Reports extends React.Component {
 
         this.state = {
             reports: [],
+            filteredReports: [],
             modalIsOpen: false,
             name: "",
             company: "",
@@ -46,12 +47,27 @@ export default class Reports extends React.Component {
         this.setModalData = this.setModalData.bind(this);
         this.showSingleReportDetail = this.showSingleReportDetail.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.setSearchData = this.setSearchData.bind(this);
+    }
+
+    setSearchData(searchString) {
+        this.setState({
+            searchString: searchString,
+        });
     }
 
     handleSearch(searchString) {
-        this.setState({
-            searchString: searchString,
-        })
+        this.setSearchData(searchString);
+
+        let reports = this.state.reports;
+        let string = searchString.toLowerCase();
+        let filteredReports = []
+        filteredReports = reports
+        .filter(report => 
+            report.candidateName.toLowerCase().includes(string) || 
+            report.companyName.toLowerCase().includes(string)
+        );
+        this.setState({filteredReports: filteredReports});
     }
 
 
@@ -104,7 +120,9 @@ export default class Reports extends React.Component {
                         <Search handleSearch={this.handleSearch}/>
                     </div>
                 </div>
-                <ReportsList reports={this.state.reports} showSingleReportDetail={this.showSingleReportDetail} />
+                <ReportsList reports={this.state.searchString.length !== 0 ? this.state.filteredReports : this.state.reports} 
+                    showSingleReportDetail={this.showSingleReportDetail} 
+                />
                 {this.displayModal()}
             </div>
 
