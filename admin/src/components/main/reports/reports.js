@@ -48,6 +48,19 @@ export default class Reports extends React.Component {
         this.showSingleReportDetail = this.showSingleReportDetail.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.setSearchData = this.setSearchData.bind(this);
+        this.filterReports = this.filterReports.bind(this);
+    }
+
+    filterReports(searchString) {
+        let reports = this.state.reports;
+        let string = searchString.toLowerCase();
+        let filteredReports = []
+        filteredReports = reports
+        .filter(report => 
+            report.candidateName.toLowerCase().includes(string) || 
+            report.companyName.toLowerCase().includes(string)
+        );
+        this.setState({filteredReports: filteredReports});
     }
 
     setSearchData(searchString) {
@@ -58,16 +71,7 @@ export default class Reports extends React.Component {
 
     handleSearch(searchString) {
         this.setSearchData(searchString);
-
-        let reports = this.state.reports;
-        let string = searchString.toLowerCase();
-        let filteredReports = []
-        filteredReports = reports
-        .filter(report => 
-            report.candidateName.toLowerCase().includes(string) || 
-            report.companyName.toLowerCase().includes(string)
-        );
-        this.setState({filteredReports: filteredReports});
+        this.filterReports(searchString);  
     }
 
 
