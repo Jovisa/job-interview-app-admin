@@ -5,6 +5,11 @@ export default class ReportsList extends React.Component {
         super(props);
 
         this.showReportDetail = this.showReportDetail.bind(this);
+        this.deleteReport = this.deleteReport.bind(this);
+    }
+
+    deleteReport(reportId) {
+        this.props.handleDelete(reportId);
     }
 
     showReportDetail(report) {
@@ -20,6 +25,7 @@ export default class ReportsList extends React.Component {
                 reports.map((report, index) => {
                     let date = new Date(report.interviewDate);
                     let formatedDate = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}.`;
+                    let reportId = report.id;
 
                     return (
                         <div className="row my-3" key={index}>
@@ -31,7 +37,7 @@ export default class ReportsList extends React.Component {
                                     <div className="col col-3">{report.status}</div>
                                     <div className="col col-4">
                                         <button className="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
-                                        <button className="btn btn-sm btn-danger">&times;</button>
+                                        <button className="btn btn-sm btn-danger" onClick={(e) => {this.deleteReport(reportId)}}>&times;</button>
                                     </div>
                                 </div>
                             </div>

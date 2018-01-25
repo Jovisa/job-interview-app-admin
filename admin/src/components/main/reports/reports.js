@@ -49,6 +49,23 @@ export default class Reports extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.setSearchData = this.setSearchData.bind(this);
         this.filterReports = this.filterReports.bind(this);
+        this.deleteReport = this.deleteReport.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.refreshReports = this.refreshReports.bind(this);
+    }
+    
+    refreshReports(reportId) {
+        let reports = this.state.reports
+        let refreshedReports = reports.filter(report => 
+            report.id !== reportId
+        );
+        this.setState({
+            reports: refreshedReports,
+        });
+    }
+    
+    handleDelete(reportId) {
+        this.deleteReport(reportId);
     }
 
     filterReports(searchString) {
@@ -84,6 +101,15 @@ export default class Reports extends React.Component {
             console.log("error");
         })
 
+    }
+
+    deleteReport(reportId) {
+        this.comunicationService.deleteReport(reportId, 
+        response => {
+            this.refreshReports(reportId);
+        }, error => {
+            console.log("error:", error);
+        })
     }
 
     componentDidMount() {
@@ -125,7 +151,7 @@ export default class Reports extends React.Component {
                     </div>
                 </div>
                 <ReportsList reports={this.state.searchString.length !== 0 ? this.state.filteredReports : this.state.reports} 
-                    showSingleReportDetail={this.showSingleReportDetail} 
+                    showSingleReportDetail={this.showSingleReportDetail} handleDelete={this.handleDelete}
                 />
                 {this.displayModal()}
             </div>

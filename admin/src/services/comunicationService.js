@@ -46,6 +46,19 @@ export default class ComunicationService {
     });
   }
 
+  deleteReport(reportId, successfulResponse, failedResponse) {
+    axios({
+      method: "DELETE",
+      url: `${API}reports/${reportId}`
+    })
+    .then(response => {
+      successfulResponse(response.data);
+    })
+    .catch(error => {
+      failedResponse(error);
+    });
+  }
+
 
 
 }
