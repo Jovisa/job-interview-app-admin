@@ -114,11 +114,11 @@ export default class Company extends React.Component {
                 <div className="row">
                     {companiesList}
                 </div>
-                <div className="row">
-                    <div className="col">
-                        <Link to="/create-report"> BACK </Link>
+                <div className="row justify-content-between">
+                    <div className="col col-3 col-md-2 text-left my-3">
+                        <Link to="/create-report" className="btn btn-success"> BACK </Link>
                     </div>
-                    <div className="col">
+                    <div className="col col-3 col-md-2 text-right my-3">
                         <Link to="/create-report/report" onClick={this.handleCompanyData} className={`btn btn-success ${this.state.isChecked ? "" : "disabled"}`}> NEXT </Link>
                     </div>
                 </div>

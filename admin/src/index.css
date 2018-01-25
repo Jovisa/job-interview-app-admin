@@ -16,3 +16,15 @@
     border: 2px solid red;
 }
 
+.bg {
+    background-color:rgba(204, 204, 229, 0.4);
+}
+
+html {
+    min-height: 100%;
+}
+
+.main {
+    min-height: calc(100vh - 59px);
+}
+

@@ -7,7 +7,7 @@ export default class ChoseCandidate extends React.Component {
         this.handleCompany = this.handleCompany.bind(this);
     }
 
-    handleCompany () {
+    handleCompany() {
         let company = this.props.company;
         let companyData = {
             id: company.id,
@@ -20,8 +20,11 @@ export default class ChoseCandidate extends React.Component {
         let company = this.props.company;
 
         return (
-            <div className={`col col-12 my-1 single-company ${this.props.checkedId === company.id ? "is-checked" : ""}`} onClick={this.handleCompany}>
-               {company.name}
+            <div className="col col-12 my-1" >
+                <div className={`card single-company text-center ${this.props.checkedId === company.id ? "is-checked" : ""}`} onClick={this.handleCompany}>
+                    <div className="my-2">{company.name}</div>
+                    
+                </div>
             </div>
         );
 

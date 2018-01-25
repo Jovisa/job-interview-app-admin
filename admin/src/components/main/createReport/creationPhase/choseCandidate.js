@@ -21,17 +21,20 @@ export default class ChoseCandidate extends React.Component {
         let defaultAvatar = "http://via.placeholder.com/100x100";
 
         return (
-            <div className={`col col-12 col-md-6 single-candidate ${this.props.checkedId === candidate.id ? 'is-checked' : ''}`} onClick={this.handleclick} >
-                <div className="row my-3">
-                    <div className="col-2">
-                        <img className="chose-candidate-img" src={candidate.avatar ? candidate.avatar : defaultAvatar} alt="Candidate Avatar" />
-                    </div>
-                    <div className="col-10">
-                        <div className="ml-3">{candidate.name}</div>
-                        <div className="ml-3">{candidate.email}</div>
+            <div className="col col-12 col-lg-6 my-1"  >
+                <div className={`card single-candidate ${this.props.checkedId === candidate.id ? 'is-checked' : ''}`} onClick={this.handleclick}>
+                    <div className="row my-3">
+                        <div className="col-2 text-center">
+                            <img className="chose-candidate-img" src={candidate.avatar ? candidate.avatar : defaultAvatar} alt="Candidate Avatar" />
+                        </div>
+                        <div className="col-10">
+                            <div className="">{candidate.name}</div>
+                            <div className="">{candidate.email}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+           
         );
 
 

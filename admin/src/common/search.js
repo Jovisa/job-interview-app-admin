@@ -14,7 +14,7 @@ export default class Search extends React.Component {
        
     render() {
         return(
-            <input type="text" onKeyUp={this.handleUserInput}/>
+            <input className="form-control" placeholder="Search" type="text" onKeyUp={this.handleUserInput}/>
         );
     }
 }

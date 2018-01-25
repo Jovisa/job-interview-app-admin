@@ -29,15 +29,17 @@ export default class ReportsList extends React.Component {
 
                     return (
                         <div className="row my-3" key={index}>
-                            <div className="col col-12 col-md-4">{report.companyName}</div>
-                            <div className="col col-12 col-md-4">{report.candidateName}</div>
-                            <div className="col col-12 col-md-4">
-                                <div className="row">
-                                    <div className="col col-5">{formatedDate}</div>
-                                    <div className="col col-3">{report.status}</div>
-                                    <div className="col col-4">
-                                        <button className="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
-                                        <button className="btn btn-sm btn-danger" onClick={(e) => {this.deleteReport(reportId)}}> X </button>
+                            <div className="col col-12">
+                                <div className="card my-1">
+                                    <div className="row ">
+                                        <div className="col col-12 col-md-3 my-2 text-center">{report.companyName}</div>
+                                        <div className="col col-12 col-md-3 my-2 text-center">{report.candidateName}</div>
+                                        <div className="col col-12 col-md-2 my-2 text-center">{formatedDate}</div>
+                                        <div className="col col-12 col-md-2 my-2 text-center">{report.status}</div>
+                                        <div className="col  col-12 col-md-2 my-2 text-center">
+                                            <button className="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
+                                            <button className="btn btn-sm btn-danger" onClick={(e) => { this.deleteReport(reportId) }}> X </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

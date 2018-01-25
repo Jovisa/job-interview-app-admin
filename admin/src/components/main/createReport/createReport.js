@@ -90,7 +90,7 @@ export default class CreateReport extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col col-12 col-md-3">
                         <Sidebar candidateName={this.state.candidateName} companyName={this.state.companyName}/>

@@ -49,6 +49,8 @@ export default class Report extends React.Component {
     submitReport(e) {
         e.preventDefault();
 
+        let check = true;
+
         const reportData = {
             interviewDate: this.state.interviewDate,
             phase: this.state.phase,
@@ -58,22 +60,23 @@ export default class Report extends React.Component {
 
         if (!reportData.interviewDate) {
             this.handleDateError();
-        
+            check = false;
         } 
         if (!reportData.phase) {
             this.handlePhaseError();
+            check = false;
         }
         if (!reportData.status) {
-            this.handleStatusError()
+            this.handleStatusError();
+            check = false;
         }
         if (!reportData.note) {
-            this.handleNoteError()
+            this.handleNoteError();
+            check = false;
         }
-        else {
+        if (check) {
             this.props.handleReportData(reportData);
         }
-
-
     }
 
     render() {
@@ -83,13 +86,13 @@ export default class Report extends React.Component {
                 <div className="row">
 
                     <div className=" form-group col col-12 col-md-4 my-3">
-                        <label >Interwiew Date</label>
+                        <label htmlFor="date">Interwiew Date</label>
                         <input className={`form-control ${this.state.dateError ? "is-invalid" : ""}`} type="date" ref="date" name="date" id="date" onChange={(e) => this.setState({ interviewDate: e.target.value, dateError: "" })} />
                         <div className="invalid-feedback">{this.state.dateError}</div>
                     </div>
 
                     <div className=" form-group col col-12 col-md-4 my-3">
-                        <label for="phase">Phase</label>
+                        <label htmlFor="phase">Phase</label>
                         <select className={`form-control ${this.state.phaseError ? "is-invalid" : ""}`} ref="phase" name="phase" id="phase" onChange={(e) => this.setState({ phase: e.target.value, phaseError: "" })}>
                             <option value="tchnical">phase</option>
                             <option value="tchnical">techical</option>
@@ -100,7 +103,7 @@ export default class Report extends React.Component {
                     </div>
 
                     <div className="col col-12 col-md-4 my-3">
-                        <label for="status">Status</label>
+                        <label htmlFor="status">Status</label>
                         <select className={`form-control ${this.state.statusError ? "is-invalid" : ""}`} ref="status" name="status" id="status" onChange={(e) => this.setState({ status: e.target.value, statusError: "", })}>
                             <option value="passed">status</option>
                             <option value="passed">passed</option>
@@ -110,17 +113,17 @@ export default class Report extends React.Component {
                     </div>
 
                     <div className="col col-12 my-3">
-                        <label for="note">Notes</label>
+                        <label htmlFor="note">Notes</label>
                         <textarea className={`form-control ${this.state.noteError ? "is-invalid" : ""}`} ref="note" name="note" id="note" cols="30" rows="10" onChange={(e) => this.setState({ note: e.target.value, noteError: "" })}></textarea>
                         <div className="invalid-feedback">{this.state.noteError}</div>
                     </div>
 
                     <div className="col col-12 my-3">
                         <div className="row justify-content-between">
-                            <div className="col col-12 col-md-3 col-lg-2">
+                            <div className="col col-3 col-md-2 text-left">
                                 <Link className="btn btn-success" to="/create-report/company"> BACK </Link>
                             </div>
-                            <div className="col col-12 col-md-3 col-lg-2">
+                            <div className="col col-3 col-md-2 text-right">
                                 <button className={`btn btn-success ${this.state.interviewDate && this.state.note && this.state.status && this.state.phase ? "" : "disabled"}`} type="submit">SUBMIT</button>
                             </div>
                         </div>

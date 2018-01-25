@@ -101,12 +101,10 @@ export default class Candidate extends React.Component {
             candidatesList = this.nothingFound();
         }
 
-
-
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row my-3 justify-content-end">
-                    <div className="col col-12 col-md-4 col-lg-3">
+                    <div className="col col-12 col-md-4">
                         <Search handleSearch={this.handleSearch} />
                     </div>
 
@@ -114,8 +112,8 @@ export default class Candidate extends React.Component {
                 <div className="row">
                     {candidatesList}
                 </div>
-                <div className="row">
-                    <div className="col">
+                <div className="row justify-content-end">
+                    <div className="col col-3 col-md-2 text-right my-2">
                         <Link to="create-report/company" onClick={this.handleCandidate} className={`btn btn-success ${this.state.isChecked ? "" : "disabled"}`}> NEXT </Link>
                     </div>
                 </div>
