@@ -37,7 +37,7 @@ export default class ReportsList extends React.Component {
                                     <div className="col col-3">{report.status}</div>
                                     <div className="col col-4">
                                         <button className="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={(e) => { this.showReportDetail(report) }}>detal</button>
-                                        <button className="btn btn-sm btn-danger" onClick={(e) => {this.deleteReport(reportId)}}>&times;</button>
+                                        <button className="btn btn-sm btn-danger" onClick={(e) => {this.deleteReport(reportId)}}> X </button>
                                     </div>
                                 </div>
                             </div>
